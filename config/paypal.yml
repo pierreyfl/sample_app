@@ -1,0 +1,41 @@
+test: &default
+
+  # Credentials for REST APIs
+  # https://developer.paypal.com/webapps/developer/applications/accounts
+  app_id: APP-80W284485P519543T
+  #sandbox_email_address: admin@backher.com
+  #client_id: AfC20BCBFr1IIsDvZD43fh6VZGR9ohdITTZn0hI1ZU22jJJ5nUILDrv7R3aM
+  #client_secret: EI2iLBBXr5rIxxtamhmSzHUgnyYuKio4ixqclUzGkwTYG5acAf4LsVcGz6sw
+
+  username: twitterapp-facilitator_api1.gmail.com
+  password: 6FAKU2G72L4QTXEK
+  signature: An5ns1Kso7MWUdW4ErQKJJJ4qi4-ATyUE62hDuokxJ-8BnzzzgBOZ3UW
+
+  # **Test Backher Creator
+  # email: admin@backher.com
+  # password: 12345678
+
+  # **Test Pledger/User
+  # email: buyer@backher.com
+  # password: 12345678
+
+  # Mode can be 'live' or 'sandbox'
+  mode: sandbox
+
+  # # With Certificate
+  # cert_path: "config/cert_key.pem"
+
+  # # IP Address
+  # ip_address: 127.0.0.1
+  # # HTTP Proxy
+  # http_proxy: http://proxy-ipaddress:3129/
+
+development:
+  <<: *default
+
+staging:
+  <<: *default
+
+production:
+  <<: *default
+

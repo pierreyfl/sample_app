@@ -1,0 +1,14 @@
+.media
+  .media-left
+    = link_to user_path(micropost.user) do
+      = image_tag gravatar_for(micropost.user.email), class: 'gravatar media-object'
+  .media-body
+    %h4.media-heading
+      = link_to micropost.user.name || micropost.user.email, user_path(micropost.user)
+    %p
+      = micropost.content
+    %p
+      %small.text.text-info
+        Posted
+        = time_ago_in_words micropost.created_at
+        ago

@@ -1,0 +1,21 @@
+.users .avatar {
+  float: left;
+  width: 80px;
+  height: 80px;
+
+  img  {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.users .stats {
+  margin-left: 90px;
+}
+
+.users .profile {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 30px;
+}

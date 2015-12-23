@@ -1,0 +1,11 @@
+%h3 Home
+- if current_user.author?
+  = render current_user 
+- else
+  .row.users
+    .col-md-4
+      = render 'users/profile', user: current_user
+    .col-md-8
+      %h4 Micropost Feed
+
+      = render current_user.feed

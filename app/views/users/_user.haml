@@ -1,0 +1,11 @@
+.row.users
+  .col-md-4
+    = render 'profile', user: user
+  
+  .col-md-8
+    %h4 Following Authors:
+    - if user.following.any?
+      - user.following.each do |author|
+        = render 'following', author: author
+    - else
+      No following authors yet

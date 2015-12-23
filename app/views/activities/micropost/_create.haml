@@ -1,0 +1,5 @@
+= link_to user_path(activity.owner) do
+  = image_tag gravatar_for(activity.owner.email), width: 40, height: 40, style: 'margin-right: 5px;'
+  %strong= activity.owner.name || activity.owner.email
+  has created a new 
+  %strong post.

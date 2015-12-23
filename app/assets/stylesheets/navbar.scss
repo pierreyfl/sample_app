@@ -1,0 +1,32 @@
+.notif {
+  font-size: 22px;
+  line-height: 1;
+  position: relative;
+
+  > .dropdown-toggle {
+    padding: 13px 15px;
+  }
+
+  .notif-num {
+    position: absolute;
+    font-size: 10px;
+    top: 20px;
+    background-color: red;
+    padding: 2px 4px;
+    line-height: 1;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    color: #FFF;
+  }
+
+  .dropdown-menu {
+    padding-bottom: 0;
+
+    > li > a {
+      padding: 7px 15px; 
+      font-size: 13px;
+      border-bottom: 1px solid #DDD;
+    } 
+  }
+}

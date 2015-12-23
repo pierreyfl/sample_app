@@ -1,0 +1,19 @@
+.media
+  .media-left
+    = link_to user_path(author) do
+      = image_tag gravatar_for(author.email), class: 'gravatar media-object'
+  .media-body
+    %h4.media-heading
+      = link_to author.email, user_path(author)
+    %p
+      %span.label.label-info= pluralize author.followers.count, 'Follower'
+      |
+      %span.label.label-success= pluralize author.microposts.count, 'Post'
+    %p
+      %small
+        - if author.microposts.any?
+          Last posted
+          = time_ago_in_words author.microposts.first.created_at
+          ago
+        - else
+          No post for this author yet.

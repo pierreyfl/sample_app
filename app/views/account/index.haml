@@ -1,0 +1,32 @@
+.vspacer-60
+.row
+  .col-sm-offset-3.col-sm-6
+    .panel.panel-default
+      .panel-heading
+        %h2 Subscription Settings 
+      .panel-body
+        .form-group
+          = link_to payment_setup_account_path(current_user), class: 'btn btn-warning btn-block', method: :post do
+            - if current_user.paypal_email.present?
+              Paypal: #{current_user.paypal_email} (change)
+            - else
+              Setup Paypal Account
+        %hr 
+        = form_for current_user, url: account_index_path, method: :put do |f|
+          .form-group
+            %label Subscription Fee
+            -#= binding.pry
+            = f.number_field :subscription_fee, class: 'form-control', value: f.object.subscription_fee
+
+          .form-group
+            %label Require users to subscribe first before viewing your Post?
+            %div
+              %label.radio-inline
+                = f.radio_button :needs_subscription, 1, checked: f.object.needs_subscription?
+                Yes
+              %label.radio-inline
+                = f.radio_button :needs_subscription, 0, checked: !f.object.needs_subscription?
+                No
+          %br
+          .form-group
+            = f.submit 'Save', class: 'btn btn-primary btn-block'

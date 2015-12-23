@@ -1,0 +1,49 @@
+.row.users
+  .col-md-4
+    .profile
+      .avatar
+        = image_tag gravatar_for(author.email), class: 'gravatar media-object'
+        
+      .stats
+        %h4= author.name || author.email
+        %p
+          = pluralize author.microposts.count, 'micropost'
+          %br
+          %span.label.label-success= pluralize author.followers.count, 'Follower'
+
+    
+    - if author.subscription_setup? && !(author == current_user)
+      .form-group
+        - if author.subscribed?(current_user)
+          = link_to 'Unsubscribe', unsubscribe_user_subscriptions_path(author), class: 'btn btn-warning btn-block', method: :delete, data: { confirm: 'Are you sure you want to unsubscribe to this author?' }
+        - else
+          = link_to 'Subscribe', user_subscriptions_path(author), class: 'btn btn-success btn-block', method: :post
+    - else
+      - if author.followable?(current_user) 
+        - if current_user.followed?(author)
+          = link_to 'Unfollow', unfollow_user_path(author), class: 'btn btn-danger btn-block' 
+        - else
+          = link_to 'Follow', follow_user_path(author), class: 'btn btn-success btn-block' 
+
+
+    - if author == current_user
+      = form_for Micropost.new do |f|
+        .form-group
+          = f.text_area :content, class: 'form-control', placeholder: 'Write a post here..'
+        = f.submit 'Post', class: 'btn btn-block btn-primary'
+  
+  .col-md-8
+    %h4 Posts
+    - if can_view_post?(author) 
+      - if author.microposts.any?
+        = render author.microposts
+      - else
+        No post yet 
+    - else
+      - if current_user.author?
+        You are not allowed to view posts of other author
+      - else
+        Please follow 
+        - if author.needs_subscription && author.paypal_email.present?
+          = 'and subscribe to'
+        the author first before viewing his/her post

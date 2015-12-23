@@ -1,0 +1,10 @@
+.profile
+  .avatar
+    = image_tag gravatar_for(user.email), class: 'gravatar'
+    
+  .stats
+    %h4= user.name || user.email
+    %p
+      = pluralize user.microposts.count, 'micropost'
+      %br
+      %span.label.label-success= pluralize user.following.count, 'Following'

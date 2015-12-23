@@ -1,0 +1,17 @@
+- @users.group_by(&:type).each do |user_type, users|
+  %h1= user_type || 'User'
+  - users.each do |user|
+    .media
+      .media-left
+        = link_to user_path(user) do
+          = image_tag gravatar_for(user.email), class: 'media-object'
+      .media-body
+        %h4.media-heading
+          = link_to user.name || user.email, user_path(user)
+        %p
+          = user.type || 'User' 
+        %p
+          %small.text.text-info
+            Joined 
+            = time_ago_in_words user.created_at
+            ago
